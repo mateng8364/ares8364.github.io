@@ -32,6 +32,9 @@ jobs:
 
       - name: Build with VitePress
         run: npm run docs:build
+        env:
+          # 与仓库名一致，例如 https://mateng8364.github.io/<仓库名>/
+          VITEPRESS_BASE: /${{ github.event.repository.name }}/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

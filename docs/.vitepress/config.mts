@@ -28,7 +28,11 @@ function createSidebarItems(dir: string, base: string) {
     })
 }
 
+// 线上为项目站：/<仓库名>/。CI 里由 deploy workflow 设置 VITEPRESS_BASE；本地开发默认根路径 '/'
+const siteBase = process.env.VITEPRESS_BASE || '/'
+
 export default defineConfig({
+  base: siteBase,
   title: 'My Awesome Project',
   description: 'A VitePress Site',
   themeConfig: {
@@ -47,6 +51,6 @@ export default defineConfig({
         items: createSidebarItems('handbook', '/handbook')
       }
     ],
-    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }]
+    socialLinks: [{ icon: 'github', link: 'https://github.com/mateng8364' }]
   }
 })
