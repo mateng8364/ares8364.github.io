@@ -52,3 +52,6 @@ VITEPRESS_BASE=/ares8364.github.io/ npm run docs:preview
 3. **首次成功后再等 1～3 分钟** 再访问；也可试一次 [Actions → 该 workflow → Run workflow] 手动重跑。
 
 4. 仓库根目录已包含 `docs/public/.nojekyll`，避免 GitHub 对下划线等路径的干扰（随构建打进产物）。
+
+5. **构建报 “Could not resolve \`./images/...png\`”**  
+   说明某篇 Markdown 里用 `![](...)` 引用了不存在的图片。把对应图片放进 `docs/handbook/images/`（或改引用路径），或去掉/改成文字说明后再构建。本地需 **Node 18+**（与 Actions 中 Node 20 一致）执行 `npm run docs:build` 才能复现同类错误。

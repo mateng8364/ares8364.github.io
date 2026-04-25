@@ -38,31 +38,31 @@
 
 此时我们可使用浏览器进入 http://127.0.0.1:8899/来访问whistle服务
 
-![image-20240424092959355](./images/image-20240424092959355.png)
+> 截图：Whistle 根证书下载（原图 `image-20240424092959355.png` 未随仓库提交，可将图片放到 `docs/handbook/images/` 后恢复 `![](...)` 引用。）
 
 下载根证书，下载完成后直接双击文件，进入钥匙串访问，双击刚才的whistle证书，展开`信任`栏，选择`始终信任`
 
-![whistle,https](./images/iShot_2024-04-24_10.14.01.png)
+> 截图：HTTPS 相关（`iShot_2024-04-24_10.14.01.png`，同上补图。）
 
-![ca,whistle](./images/iShot_2024-04-24_10.16.24.png)
+> 截图：证书信任（`iShot_2024-04-24_10.16.24.png`，同上补图。）
 
 #### 4 设置网络代理
 
 设置中找到目前链接的网络，开启网页代理和安全网页代理
 
-![image](./images/iShot_2024-04-24_09.48.30.png)
+> 截图：网络代理（`iShot_2024-04-24_09.48.30.png`，同上补图。）
 
 服务器和端口各自使用`127.0.0.1`和`8899`，这样浏览器网络就被whistle监控到了，此时浏览器访问服务，在whistle界面就可以看到网络记录了
 
 下面是访问百度搜搜，使用关键词`123`的whistle监控情况
 
-![whistle,baidu](./images/iShot_2024-04-24_09.53.59.png)
+> 截图：百度抓包（`iShot_2024-04-24_09.53.59.png`，同上补图。）
 
 #### 5 设置过滤规则
 
 在实际使用中，只需要关关注自己需要的网络资源访问情况，对于不关心的域名以及静态资源访问，可以排除，在`Network`-`Settings`面板，有`Exclude Filter`和`Include Filter`两个表单输入框，支持通过关键字（不区分大小写）或正则表达式匹配URL(`pattern`)、请求方法（`m:pattern`）、客户端IP（`i:pattern`)、请求头内容（`h:pattern`)，请求头的host字段（`H:pattern`)，多个条件用空格或换行符隔开。更改之后是立即生效的，可以`clear`清除当前面板后查看
 
-```urlPatten
+```text
 m:methodPattern
 i:clientIpPattern
 h:headersPattern
@@ -70,7 +70,7 @@ b:bodyPattern
 H:reqHostPattern`
 ```
 
-![whistle,filter](./images/iShot_2024-04-24_09.58.50.png)
+> 截图：过滤规则（`iShot_2024-04-24_09.58.50.png`，同上补图。）
 
 除此之外，还可以使用`Network`面板最下面的过滤框来简单过滤，比如输入`m:get`将过滤掉所有非get请求
 
