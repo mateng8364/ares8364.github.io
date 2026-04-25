@@ -38,3 +38,17 @@ VITEPRESS_BASE=/ares8364.github.io/ npm run docs:preview
 ## 若希望用根域名打开（可选）
 
 在 GitHub 将仓库**重命名**为 `mateng8364.github.io`（或新建该名仓库并迁移内容），则站点会变为 `https://mateng8364.github.io/`；届时 workflow 里的 `VITEPRESS_BASE` 会随新仓库名自动变化，一般仍无需改配置。
+
+## 若线上是 404（先按顺序排查）
+
+1. **Pages 源必须是 Actions**  
+   打开仓库 [Settings → Pages](https://github.com/mateng8364/ares8364.github.io/settings/pages)，在 **Build and deployment** 里，**Source** 选 **GitHub Actions**（不要选 *Deploy from a branch*，也不要留成未配置）。没选好的话，**不会发布任何静态文件**，浏览器就是 404。
+
+2. **看最后一次 workflow 是否成功**  
+   打开 [Actions](https://github.com/mateng8364/ares8364.github.io/actions)，点 **Deploy VitePress site to Pages**。  
+   - 若 `build` 或 `deploy` 失败，点进去看红色步骤的日志（常见：`npm ci` 失败、与 `package-lock.json` 不一致）。  
+   - 若 **deploy** 在等审批：到 **Settings → Environments → `github-pages`** 看是否有待处理的 deployment review。
+
+3. **首次成功后再等 1～3 分钟** 再访问；也可试一次 [Actions → 该 workflow → Run workflow] 手动重跑。
+
+4. 仓库根目录已包含 `docs/public/.nojekyll`，避免 GitHub 对下划线等路径的干扰（随构建打进产物）。
